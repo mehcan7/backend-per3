@@ -34,7 +34,8 @@
                         <th>Materiaal</th>
                         <th>Diameter</th>
                         <th>Releasedatum</th>
-                        <th></th>
+                        <th>Wijzig</th>
+                        <th>Verwijder</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,11 @@
                             <td><?php echo $horloge->Materiaal; ?></td>
                             <td><?php echo $horloge->Diameter; ?></td>
                             <td><?php echo $horloge->Releasedatum; ?></td>
+                            <td class="text-center">
+                                <a href="<?= URLROOT; ?>/horloge/update/<?= $horloge->Id; ?>">
+                                    <i class="bi bi-pencil-fill text-success"></i>
+                                </a>
+                            </td>
                             <td class="text-center">
                                 <a href="<?= URLROOT; ?>/horloge/delete/<?= $horloge->Id; ?>"
                                    onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?');">

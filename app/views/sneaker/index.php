@@ -34,7 +34,8 @@
                         <th>Materiaal</th>
                         <th>Gewicht</th>
                         <th>Releasedatum</th>
-                        <th></th>
+                        <th>Wijzig</th>
+                        <th>Verwijder</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,11 @@
                             <td><?php echo $sneaker->Materiaal; ?></td>
                             <td><?php echo $sneaker->Gewicht; ?></td>
                             <td><?php echo $sneaker->Releasedatum; ?></td>
+                            <td class="text-center">
+                                <a href="<?= URLROOT; ?>/sneaker/update/<?= $sneaker->Id; ?>">
+                                    <i class="bi bi-pencil-fill text-success"></i>
+                                </a>
+                            </td>
                             <td class="text-center">
                                 <a href="<?= URLROOT; ?>/sneaker/delete/<?= $sneaker->Id; ?>"
                                    onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?');">

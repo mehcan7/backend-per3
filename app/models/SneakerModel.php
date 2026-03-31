@@ -33,6 +33,25 @@ class SneakerModel
         return $this->db->resultSet();
     }
 
+    public function getSneakerById($Id)
+    {
+        $sql = 'SELECT
+            SMPS.Id,
+            SMPS.Merk,
+            SMPS.Model,
+            SMPS.Type,
+            SMPS.Materiaal,
+            SMPS.Gewicht,
+            SMPS.Releasedatum
+        FROM Sneakers as SMPS
+        WHERE SMPS.Id = :Id';
+
+        $this->db->query($sql);
+        $this->db->bind(':Id', $Id, PDO::PARAM_INT);
+
+        return $this->db->single();
+    }
+
 
 
 
@@ -69,6 +88,30 @@ class SneakerModel
                 )";
 
         $this->db->query($sql);
+        $this->db->bind(':merk', $data['merk'], PDO::PARAM_STR);
+        $this->db->bind(':model', $data['model'], PDO::PARAM_STR);
+        $this->db->bind(':type', $data['type'], PDO::PARAM_STR);
+        $this->db->bind(':materiaal', $data['materiaal'], PDO::PARAM_STR);
+        $this->db->bind(':gewicht', $data['gewicht'], PDO::PARAM_STR);
+        $this->db->bind(':releasedatum', $data['releasedatum'], PDO::PARAM_STR);
+
+        return $this->db->execute();
+    }
+
+    public function update($data)
+    {
+        $sql = "UPDATE Sneakers
+                SET Merk = :merk,
+                    Model = :model,
+                    Type = :type,
+                    Materiaal = :materiaal,
+                    Gewicht = :gewicht,
+                    Releasedatum = :releasedatum,
+                    DatumGewijzigd = NOW(6)
+                WHERE Id = :Id";
+
+        $this->db->query($sql);
+        $this->db->bind(':Id', $data['id'], PDO::PARAM_INT);
         $this->db->bind(':merk', $data['merk'], PDO::PARAM_STR);
         $this->db->bind(':model', $data['model'], PDO::PARAM_STR);
         $this->db->bind(':type', $data['type'], PDO::PARAM_STR);
